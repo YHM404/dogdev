@@ -1,0 +1,11 @@
+metric_name,description,unit,collection_frequency,alert_threshold
+cpu_usage,CPU使用率,percentage,60s,80
+memory_usage,内存使用率,percentage,60s,85
+disk_usage,磁盘使用率,percentage,300s,90
+previous_input_latency,获取上一次输入的延迟时间,milliseconds,30s,2000
+input_size,输入数据大小,bytes,30s,1048576
+input_process_success_rate,输入处理成功率,percentage,300s,95
+error_count,错误次数统计,count,300s,10
+queue_length,输入队列长度,count,60s,100
+data_retention_time,数据保留时间,hours,3600s,72
+throughput,每秒处理的输入请求数,count/second,60s,1000

@@ -1,0 +1,19 @@
+llm:
+  provider: openai
+  model: gpt-4o
+  # Uncomment and fill these for OpenAI or other API-based providers
+  # base_url: https://api.openai.com/v1
+  # api_key: your-api-key-here
+
+embedding:
+  provider: ollama
+  model: nomic-embed-text:latest 
+
+qdrant:
+  url: http://localhost:6333
+  api_key: your-qdrant-api-key-here
+  collection: monitor
+  top_k: 10
+  score_threshold: 0.5
+  chunk_size: 300
+  chunk_overlap: 30 

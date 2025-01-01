@@ -44,11 +44,22 @@ type agent struct {
 }
 
 func NewAgent(embedder embeddings.Embedder, llm llms.Model, opts Options) (Agent, error) {
-	store, err := qdrant.New(
-		qdrant.WithURL(url.URL{Scheme: "http", Host: opts.QdrantURL}),
+	qdrantURL, err := url.Parse(opts.QdrantURL)
+	if err != nil {
+		return nil, fmt.Errorf("invalid Qdrant URL: %w", err)
+	}
+
+	qdrantOpts := []qdrant.Option{
+		qdrant.WithURL(*qdrantURL),
 		qdrant.WithEmbedder(embedder),
 		qdrant.WithCollectionName(opts.CollectionName),
-	)
+	}
+
+	if opts.QdrantAPIKey != "" {
+		qdrantOpts = append(qdrantOpts, qdrant.WithAPIKey(opts.QdrantAPIKey))
+	}
+
+	store, err := qdrant.New(qdrantOpts...)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create qdrant store: %w", err)
 	}

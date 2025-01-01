@@ -2,20 +2,21 @@ package monitor
 
 type Options struct {
 	QdrantURL      string
+	QdrantAPIKey   string
 	CollectionName string
+	TopK           int
+	ScoreThreshold float32
 	ChunkSize      int
 	ChunkOverlap   int
-	ScoreThreshold float32
-	TopK           int
 }
 
 func DefaultOptions() Options {
 	return Options{
-		QdrantURL:      "localhost:6333",
+		QdrantURL:      "http://localhost:6334",
 		CollectionName: "monitor",
-		ChunkSize:      300,
-		ChunkOverlap:   30,
-		ScoreThreshold: 0.50,
-		TopK:           1,
+		TopK:           4,
+		ScoreThreshold: 0.7,
+		ChunkSize:      500,
+		ChunkOverlap:   50,
 	}
 }
